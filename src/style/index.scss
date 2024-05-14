@@ -1,0 +1,55 @@
+@import "./base.scss";
+@import "./reset.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $ping-regular;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  @include flex;
+  @include flex-j-a(center, center)
+}
+
+.main {
+  @include flex;
+  @include flex-j-a(center, center);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 定制滚动条的整体宽度和背景色 */
+::-webkit-scrollbar {
+  width: 8px;  /* 对于垂直滚动条，设置宽度 */
+  height: 8px; /* 对于水平滚动条，设置高度 */
+  background-color: #f9f9f9; /* 滚动条的背景色 */
+}
+/* 定制滚动条轨道的样式 */
+::-webkit-scrollbar-track {
+  background-color: #f9f9f9; /* 轨道的背景色 */
+  border-radius: 8px; /* 轨道的圆角 */
+}
+/* 定制滚动条滑块的样式 */
+::-webkit-scrollbar-thumb {
+  background-color: #f48d80; /* 滑块的背景色 */
+  border-radius: 8px; /* 滑块的圆角 */
+  border: 2px solid #ffffff; /* 滑块的边框和颜色 */
+}
+
+
+

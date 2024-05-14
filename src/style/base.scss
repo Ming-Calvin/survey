@@ -1,0 +1,48 @@
+// scss 变量
+$main-bg-color: #f9f9f9;
+$ping-bold: 'PINGFANG-BOLD';
+$ping-medium: 'PINGFANG-MEDIUM';
+$ping-regular: 'PINGFANG-REGULAR';
+
+// @mixin 定义重复样式
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+}
+
+@mixin flex-j-a($justify, $align) {
+  // @include 使用重复样式
+  @include flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin relative {
+  position: relative;
+}
+
+@mixin absolute($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin translate($x, $y) {
+  transform: translate($x, $y);
+}
