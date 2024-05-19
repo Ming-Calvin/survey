@@ -154,6 +154,7 @@ export default {
     // 跳转
     scrollToElement(id) {
       const element = document.getElementById(id);
+      console.log(element, "element");
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }

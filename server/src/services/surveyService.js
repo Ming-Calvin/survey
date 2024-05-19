@@ -31,7 +31,11 @@ class SurveyService {
   }
 
   static deleteOptionsByQuestionId(qId) {
-    return Survey.deleteOptionsByQuestionId(qId)
+    return Survey.deleteOptionsByQuestionId(qId);
+  }
+
+  static getSurveyList(limit, offset) {
+    return Survey.getSurveyList(limit, offset);
   }
 }
 

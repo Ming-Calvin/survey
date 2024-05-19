@@ -4,7 +4,7 @@
       v-for="(item, index) in questions"
       :key="index"
       class="outline"
-      @click="scrollToElement(index + item.qId)"
+      @click="scrollToElement(item.sortNum)"
     >
       {{ item.sortNum }}、{{ item.qTitle }}
     </div>

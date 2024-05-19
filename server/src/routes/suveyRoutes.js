@@ -76,7 +76,9 @@ router.post('/saveQuestions', async (req, res) => {
     const { id: surveyId, questions } = req.body;
 
     // 获取数据库中当前问卷的所有问题
-    const [existingQuestions] = await surveyService.getQuestionsBySurveyId(surveyId);
+    const [existingQuestions] = await surveyService.getQuestionsBySurveyId(
+      surveyId
+    );
     const existingQuestionIds = existingQuestions.map((q) => q.qId);
 
     // 提交的问题ID集合(使用filter 过滤为0、null、undefined、‘’，false、NaN 的项)
@@ -96,7 +98,7 @@ router.post('/saveQuestions', async (req, res) => {
     // 处理提交的问题
     const operations = questions.map(async (question) => {
       const { qTitle, qType, options, sortNum, toId } = question;
-      let { qId } = question
+      let { qId } = question;
 
       // 更新或添加问题
       if (existingQuestionIds.includes(qId)) {
@@ -109,33 +111,54 @@ router.post('/saveQuestions', async (req, res) => {
           sortNum,
           toId
         );
-
       } else {
-        qId = uuid.v4()
+        qId = uuid.v4();
 
         console.log('add');
-        await surveyService.addQuestions(
-          qId,
-          surveyId,
-          qTitle,
-          qType,
-          sortNum
-        );
+        await surveyService.addQuestions(qId, surveyId, qTitle, qType, sortNum);
       }
 
       // 删除问题的所有选项
-      await surveyService.deleteOptionsByQuestionId(qId)
+      await surveyService.deleteOptionsByQuestionId(qId);
 
       // 添加更新选项
       await Promise.all(
         options.map(({ optionName, sortNum, toId }) => {
-          return surveyService.addOption(uuid.v4(), optionName, qId, sortNum, toId);
+          return surveyService.addOption(
+            uuid.v4(),
+            optionName,
+            qId,
+            sortNum,
+            toId
+          );
         })
       );
     });
 
     await Promise.all(operations);
     res.status(201).json({ message: 'User addSurvey' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/getSurveyList', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const offset = (page - 1) * limit;
+
+  try {
+    const [rows] = await surveyService.getSurveyList(limit, offset);
+
+    res.status(200).json({
+      code: 200,
+      data: rows,
+      pagination: {
+        page: page,
+        limit: limit,
+        total: rows.length,
+      },
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

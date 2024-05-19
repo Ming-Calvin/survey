@@ -12,7 +12,9 @@ import File from "@/components/Form/File.vue";
 import Rate from "@/components/Form/Rate.vue";
 import EditControls from "@/components/Form/EditControls.vue";
 import QuestionTitle from "@/components/Form/Title.vue";
-import skipQuestion from "@/components/Form/skipQuestion.vue";
+import SkipQuestion from "@/components/Form/skipQuestion.vue";
+import CustomTable from "@/components/Table/index.vue";
+import TableCard from "@/components/Table/TableCard.vue";
 
 const globalComponents = [
   Header,
@@ -27,7 +29,9 @@ const globalComponents = [
   Rate,
   EditControls,
   QuestionTitle,
-  skipQuestion,
+  SkipQuestion,
+  CustomTable,
+  TableCard,
 ];
 
 globalComponents.forEach((ele) => {

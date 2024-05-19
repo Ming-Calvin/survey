@@ -27,3 +27,12 @@ export function saveSurvey(data) {
     data,
   });
 }
+
+// 查询问卷列表
+export function getSurveyList(params) {
+  return request({
+    method: "get",
+    url: config.baseUrl + "/api/getSurveyList",
+    params,
+  });
+}

@@ -95,6 +95,24 @@
   }
 }
 
+.el-button--text {
+  border-color: transparent;
+  color: #FF2503;
+  background: 0 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  &:hover {
+    color: #FF2503;
+    background-color: transparent;
+  }
+
+  &:focus {
+    color: #DF0629;
+    background-color: transparent;
+  }
+}
+
 .el-container {
   height: 100vh;
 }
@@ -283,3 +301,6 @@
   padding: 15px 20px;
 }
 
+.el-tag {
+  padding: 0 10px !important;
+}

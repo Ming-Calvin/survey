@@ -83,8 +83,13 @@ class Survey {
 
   // 删除特定问题的所有选项
   static deleteOptionsByQuestionId(qId) {
-    const SQL = `DELETE FROM Options Where qId = ?`
-    return db.query(SQL, [qId])
+    const SQL = `DELETE FROM Options Where qId = ?`;
+    return db.query(SQL, [qId]);
+  }
+
+  static getSurveyList(limit, offset) {
+    const SQL = `SELECT id, title, createTime, status, published FROM Survey ORDER BY createTime DESC LIMIT ? OFFSET ?`;
+    return db.query(SQL, [limit, offset]);
   }
 }
 
