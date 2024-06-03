@@ -13,7 +13,7 @@
       style="min-height: calc(100vh - 500px)"
     >
       <card
-        v-for="(item, index) in questions"
+        v-for="(item, index) in showQuestion"
         :key="item.sortNum + Math.random()"
         :id="item.sortNum"
         :isActive="activeQuestion === index"
@@ -237,12 +237,20 @@ export default {
   mounted() {
     this.$EventBus.$on("scroll-to-element", this.scrollToElement);
     this.$EventBus.$on("skip-to-question", this.skipToQuestion);
-    this.showQuestion = [...this.questions];
+    this.$EventBus.$on("save-answer",() => {
+      console.log(this.formData);
+    });
   },
   destroyed() {
     this.$EventBus.$off("scroll-to-element", this.scrollToElement);
     this.$EventBus.$off("skip-to-question", this.skipToQuestion);
+    this.$EventBus.$off("save-answer");
   },
+  watch: {
+    questions(newValue) {
+      this.showQuestion = newValue
+    }
+  }
 };
 </script>
 

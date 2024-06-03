@@ -48,6 +48,18 @@ export default {
           isActive: "true",
         },
         {
+          label: "必填",
+          function: "required",
+          class: "required",
+          isRequired: "false",
+        },
+        {
+          label: "取消必填",
+          function: "cancelRequired",
+          class: "cancel-required",
+          isRequired: "true",
+        },
+        {
           label: "复制题目",
           function: "copyQuestion",
           class: "copy-question-btn",
@@ -83,6 +95,7 @@ export default {
         });
       }
 
+      console.log(btnList, 'btnList');
       return btnList;
     },
     isEdit() {

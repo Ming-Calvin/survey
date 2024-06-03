@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     saveSurvey() {
+      console.log(this.questions, 'this.questions');
       this.$store
         .dispatch("survey/updateSurvey", {
           id: this.$route.query.id,
@@ -32,7 +33,7 @@ export default {
     },
     preview() {
       this.$router.push({
-        path: "/preview",
+        path: "/survey/preview",
         query: { id: this.$route.query.id },
       });
     },

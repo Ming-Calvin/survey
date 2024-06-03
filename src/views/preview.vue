@@ -3,8 +3,8 @@
     <Main class="main">
       <template #survey-button>
         <div class="survey-button">
-          <el-button type="primary"> 保存 </el-button>
-          <el-button type="danger"> 提交 </el-button>
+          <el-button type="primary" @click="save"> 保存 </el-button>
+          <el-button type="danger" > 提交 </el-button>
         </div>
       </template>
     </Main>
@@ -23,6 +23,12 @@ export default {
         this.survey = res.questions;
       });
   },
+  methods: {
+    // 保存
+    save() {
+      this.$EventBus.$emit('save-answer')
+    },
+  }
 };
 </script>
 

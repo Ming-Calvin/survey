@@ -12,7 +12,7 @@
         </el-col>
 
         <el-col :span="18">
-          <el-input placeholder="请输入答案" v-model="data" v-bind="$attrs">
+          <el-input placeholder="请输入答案" v-model="internalValue[index]" v-bind="$attrs">
           </el-input>
         </el-col>
       </template>
